@@ -1,3 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ChessGame.Chessboard;
 
-Console.WriteLine("Hello, World!");
+Position P = new Position(1, 1);
+Console.WriteLine(P.ToString());
