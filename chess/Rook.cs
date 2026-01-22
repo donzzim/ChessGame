@@ -1,4 +1,6 @@
-﻿namespace ChessGame.chessboard.chess;
+﻿using ChessGame.chessboard;
+
+namespace ChessGame.chess;
 
 public class Rook : Piece
 {
