@@ -3,7 +3,7 @@ namespace ChessGame;
 
 public class Screen
 {
-    public static void printScreen(Chessboard.Chessboard cb)
+    public static void printScreen(chessboard.Chessboard cb)
     {
         for (int i = 0; i < cb.Rows; i++)
         {

@@ -1,4 +1,4 @@
-﻿namespace ChessGame.Chessboard;
+﻿namespace ChessGame.chessboard;
 
 public class Chessboard
 {
@@ -16,5 +16,11 @@ public class Chessboard
     public Piece Piece(int row, int column)
     {
         return Pieces[row, column];
+    }
+
+    public void PlacePiece(Piece p, Position pos)
+    {
+        Pieces[pos.Row, pos.Column] = p;
+        p.Position = pos;
     }
 }

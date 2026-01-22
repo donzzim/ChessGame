@@ -1,4 +1,4 @@
-﻿namespace ChessGame.Chessboard;
+﻿namespace ChessGame.chessboard;
 
 public class Piece
 {
@@ -7,9 +7,9 @@ public class Piece
     public int NumberOfMoves  { get;  set; }
     public Chessboard Chessboard { get; protected set; }
 
-    public Piece(Position position, Color color, Chessboard chessboard)
+    public Piece(Color color, Chessboard chessboard)
     {
-        Position = position;
+        Position = null;
         Color = color;
         NumberOfMoves = 0;
         Chessboard = chessboard;
