@@ -1,12 +1,15 @@
 ﻿
+using ChessGame.chessboard;
+
 namespace ChessGame;
 
 public class Screen
 {
-    public static void printScreen(chessboard.Chessboard cb)
+    public static void PrintScreen(chessboard.Chessboard cb)
     {
         for (int i = 0; i < cb.Rows; i++)
         {
+            Console.Write(8 - i + " ");
             for (int j = 0; j < cb.Columns; j++)
             {
                 if (cb.Piece(i, j) == null)
@@ -15,11 +18,28 @@ public class Screen
                 }
                 else
                 {
-                    Console.Write(cb.Piece(i, j) + " ");
+                    PrintPiece(cb.Piece(i, j));
+                    Console.Write(" ");
                 }
             }
-
             Console.WriteLine();
+        }
+
+        Console.WriteLine(" a b c d e f g h");
+    }
+
+    public static void PrintPiece(Piece piece)
+    {
+        if (piece.Color == Color.White)
+        {
+            Console.WriteLine(piece);
+        }
+        else
+        {
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(piece);
+            Console.ForegroundColor = aux;
         }
     }
 }
