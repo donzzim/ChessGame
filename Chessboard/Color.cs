@@ -1,0 +1,11 @@
+﻿namespace ChessGame.Chessboard;
+
+public enum Color
+{
+    White,
+    Black,
+    Yellow,
+    Red,
+    Green,
+    Blue,
+}

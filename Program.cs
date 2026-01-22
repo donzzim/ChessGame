@@ -1,4 +1,5 @@
 ﻿using ChessGame.Chessboard;
 
-Position P = new Position(1, 1);
-Console.WriteLine(P.ToString());
+Chessboard Cb = new Chessboard(8, 8);
+
+Console.ReadLine();
