@@ -14,4 +14,9 @@ public class Piece
         NumberOfMoves = 0;
         Chessboard = chessboard;
     }
+
+    public void AddMove()
+    {
+        NumberOfMoves++;
+    }
 }

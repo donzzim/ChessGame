@@ -4,12 +4,21 @@ using ChessGame.chess;
 
 try
 {
-    Chessboard cb = new Chessboard(8, 8);
+    ChessMatch match = new ChessMatch();
 
-    cb.PlacePiece(new Rook(cb, Color.Black), new Position(0, 0));
-    cb.PlacePiece(new Rook(cb, Color.Black), new Position(1, 3));
-    cb.PlacePiece(new King(cb, Color.Black), new Position(0, 9));
-    Screen.PrintScreen(cb);
+    while (!match.Finished)
+    {
+        Console.Clear();
+        Screen.PrintScreen(match.Board);
+
+        Console.WriteLine();
+        Console.Write("Origin: ");
+        Position origin = Screen.ReadChessPosition().ToPosition();
+        Console.Write("Destination: ");
+        Position destination = Screen.ReadChessPosition().ToPosition();
+
+        match.MakeMove(origin, destination);
+    }
 }
 catch (ChessboardException e)
 {

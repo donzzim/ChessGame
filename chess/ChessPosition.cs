@@ -7,7 +7,7 @@ public class ChessPosition
     public char Column { get; set; }
     public int Row { get; set; }
 
-    public ChessPosition(int row,char column)
+    public ChessPosition(char column,int row)
     {
         Column = column;
         Row = row;
