@@ -10,7 +10,7 @@ This project is a console/desktop chess game implemented in C# using .NET. It fe
 - ♟️ Chess rules and logic implemented  
 - 🖥️ Simple visual representation (console)  
 - ♟️ Allows two players to play a full game of chess  
-- 📦 Includes main entry point (`Program.cs`) and game logic classes (`Screen.cs`, etc.) :contentReference[oaicite:2]{index=2}
+- 📦 Includes main entry point (`Program.cs`) and game logic classes (`Screen.cs`, etc.) 
 
 ## 🚀 Features
 
@@ -19,7 +19,7 @@ This project is a console/desktop chess game implemented in C# using .NET. It fe
 ✔ Player turn control  
 ✔ Game loop flow  
 ✔ Console/Window display for board state  
-✔ Extensible code structure for rule improvements :contentReference[oaicite:3]{index=3}
+✔ Extensible code structure for rule improvements
 
 *(Depending on your actual implementation you can update this list with additional features such as move validation, check/checkmate detection, UI, etc.)*
 
@@ -34,4 +34,48 @@ This project is a console/desktop chess game implemented in C# using .NET. It fe
 
 ```bash
 git clone https://github.com/donzzim/ChessGame.git
+```
+### Build & Run
 
+1. Open the solution file (ChessGame.sln) in your IDE
+2. Build the project
+3. Run the application
+Or via command line:
+```bash
+cd ChessGame
+dotnet build
+dotnet run --project ChessGame.csproj
+```
+
+## 📁 Project Struture
+
+ChessGame/
+├── ChessGame.sln
+├── ChessGame.csproj
+├── Program.cs
+├── Screen.cs
+├── chess/              # Core classes (Board, Pieces, Moves, etc.)
+├── chessboard/         # Rendering / visualization logic
+└── README.md
+
+## 🧩 How to Play
+
+- The game runs in a console or window (depending on implementation).
+
+- Follow prompts to move pieces.
+
+- Use standard chess notation or coordinate-based input (if implemented).
+
+- The game enforces turn order.
+
+## 🛠️ How It Works
+
+The main parts of the game include:
+
+✔ **Board Representation** – Tracks piece positions
+
+✔ **Piece Logic** – Each chess piece implements its own movement rules
+
+✔ **Game Loop** – Handles player turns, move validation, game state
+
+✔ **Rendering** – Displays the board state in the console/window
