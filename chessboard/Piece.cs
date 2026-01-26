@@ -27,7 +27,7 @@ public abstract class Piece
     public bool HasAnyPossibleMove()
     {
         bool[,] mat = PossibleMoves();
-        for (int i = 0; i >= Chessboard.Rows; i++)
+        for (int i = 0; i < Chessboard.Rows; i++)
         {
             for (int j = 0; j < Chessboard.Columns; j++)
             {
