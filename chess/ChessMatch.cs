@@ -11,6 +11,7 @@ public class ChessMatch
     private HashSet<Piece> pieces;
     private HashSet<Piece> capturedPieces;
     public bool Check { get; private set; }
+    public Piece PieceEnPassant { get; private set; }
 
     public ChessMatch()
     {
@@ -18,9 +19,10 @@ public class ChessMatch
         Turn = 1;
         CurrentPlayer = Color.White;
         Finished = false;
+        Check = false;
+        PieceEnPassant = null;
         pieces = new HashSet<Piece>();
         capturedPieces = new HashSet<Piece>();
-        Check = false;
         PlacePieces();
     }
 
@@ -55,6 +57,25 @@ public class ChessMatch
             Board.PlacePiece(R, destinationR);
         }
 
+        // En Passant
+        if (p is Pawn)
+        {
+            if (origin.Row != destination.Row && capturedPiece == null)
+            {
+                Position posP;
+                if (p.Color == Color.White)
+                {
+                    posP = new Position(destination.Row + 1, destination.Column);
+                }
+                else
+                {
+                    posP = new Position(destination.Row - 1, destination.Column);
+                }
+                capturedPiece = Board.RemovePiece(posP);
+                capturedPieces.Add(capturedPiece);
+            }
+        }
+
         return capturedPiece;
     }
 
@@ -69,6 +90,7 @@ public class ChessMatch
         }
         Board.PlacePiece(p, origin);
 
+        // Castling
         if(p is King && destination.Column == origin.Column + 2)
         {
             Position originR = new Position(origin.Row, origin.Column + 3);
@@ -85,6 +107,25 @@ public class ChessMatch
             Piece R = Board.RemovePiece(destinationR);
             R.RemoveMove();
             Board.PlacePiece(R, originR);
+        }
+
+        // En Passant
+        if (p is Pawn)
+        {
+            if (origin.Column != destination.Column && capturedPiece == PieceEnPassant)
+            {
+                Piece pawn = Board.RemovePiece(destination);
+                Position posP;
+                if (p.Color == Color.White)
+                {
+                    posP = new Position(3, destination.Column);
+                }
+                else
+                {
+                    posP = new  Position(4, destination.Column);
+                }
+                Board.PlacePiece(pawn, posP);
+            }
         }
     }
 
@@ -115,6 +156,18 @@ public class ChessMatch
         {
             Turn++;
             ChangePlayer();
+        }
+
+        Piece p = Board.Piece(destination);
+
+        // En Passant
+        if (p is Pawn && (destination.Row == origin.Row - 2 || destination.Row == origin.Row + 2 ))
+        {
+            PieceEnPassant = p;
+        }
+        else
+        {
+            PieceEnPassant = null;
         }
 
     }
@@ -275,14 +328,14 @@ public class ChessMatch
         PlaceNewPiece('g', 1, new Knight(Board, Color.White));
         PlaceNewPiece('h', 1, new Rook(Board, Color.White));
 
-        PlaceNewPiece('a', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('b', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('c', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('d', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('e', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('f', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('g', 2, new Pawn(Board, Color.White));
-        PlaceNewPiece('h', 2, new Pawn(Board, Color.White));
+        PlaceNewPiece('a', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('b', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('c', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('d', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('e', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('f', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('g', 2, new Pawn(Board, Color.White,this));
+        PlaceNewPiece('h', 2, new Pawn(Board, Color.White,this));
 
         // ===== Black pieces =====
         PlaceNewPiece('a', 8, new Rook(Board, Color.Black));
@@ -294,14 +347,14 @@ public class ChessMatch
         PlaceNewPiece('g', 8, new Knight(Board, Color.Black));
         PlaceNewPiece('h', 8, new Rook(Board, Color.Black));
 
-        PlaceNewPiece('a', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('b', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('c', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('d', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('e', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('f', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('g', 7, new Pawn(Board, Color.Black));
-        PlaceNewPiece('h', 7, new Pawn(Board, Color.Black));
+        PlaceNewPiece('a', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('b', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('c', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('d', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('e', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('f', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('g', 7, new Pawn(Board, Color.Black,this));
+        PlaceNewPiece('h', 7, new Pawn(Board, Color.Black,this));
     }
 
 
