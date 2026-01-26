@@ -48,7 +48,7 @@ dotnet run --project ChessGame.csproj
 ```
 
 ## 📁 Project Struture
-
+```text
 ChessGame/
 ├── ChessGame.sln
 ├── ChessGame.csproj
@@ -57,7 +57,7 @@ ChessGame/
 ├── chess/              # Core classes (Board, Pieces, Moves, etc.)
 ├── chessboard/         # Rendering / visualization logic
 └── README.md
-
+```
 ## 🧩 How to Play
 
 - The game runs in a console or window (depending on implementation).
