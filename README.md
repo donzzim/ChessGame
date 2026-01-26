@@ -21,8 +21,6 @@ This project is a console/desktop chess game implemented in C# using .NET. It fe
 ✔ Console/Window display for board state  
 ✔ Extensible code structure for rule improvements
 
-*(Depending on your actual implementation you can update this list with additional features such as move validation, check/checkmate detection, UI, etc.)*
-
 ## 🛠️ Getting Started
 
 ### Requirements
