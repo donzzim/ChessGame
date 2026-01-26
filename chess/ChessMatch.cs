@@ -36,6 +36,25 @@ public class ChessMatch
             capturedPieces.Add(capturedPiece);
         }
 
+        // Castling
+        if(p is King && destination.Column == origin.Column + 2)
+        {
+            Position originR = new Position(origin.Row, origin.Column + 3);
+            Position destinationR = new Position(origin.Row, origin.Column + 1);
+            Piece R = Board.RemovePiece(originR);
+            R.AddMove();
+            Board.PlacePiece(R, destinationR);
+        }
+
+        if(p is King && destination.Column == origin.Column - 2)
+        {
+            Position originR = new Position(origin.Row, origin.Column - 4);
+            Position destinationR = new Position(origin.Row, origin.Column - 1);
+            Piece R = Board.RemovePiece(originR);
+            R.AddMove();
+            Board.PlacePiece(R, destinationR);
+        }
+
         return capturedPiece;
     }
 
@@ -49,6 +68,24 @@ public class ChessMatch
             capturedPieces.Remove(capturedPiece);
         }
         Board.PlacePiece(p, origin);
+
+        if(p is King && destination.Column == origin.Column + 2)
+        {
+            Position originR = new Position(origin.Row, origin.Column + 3);
+            Position destinationR = new Position(origin.Row, origin.Column + 1);
+            Piece R = Board.RemovePiece(destinationR);
+            R.RemoveMove();
+            Board.PlacePiece(R, originR);
+        }
+
+        if(p is King && destination.Column == origin.Column - 2)
+        {
+            Position originR = new Position(origin.Row, origin.Column - 4);
+            Position destinationR = new Position(origin.Row, origin.Column - 1);
+            Piece R = Board.RemovePiece(destinationR);
+            R.RemoveMove();
+            Board.PlacePiece(R, originR);
+        }
     }
 
     public void PerformTurn(Position origin, Position destination)
@@ -233,7 +270,7 @@ public class ChessMatch
         PlaceNewPiece('b', 1, new Knight(Board, Color.White));
         PlaceNewPiece('c', 1, new Bishop(Board, Color.White));
         PlaceNewPiece('d', 1, new Queen(Board, Color.White));
-        PlaceNewPiece('e', 1, new King(Board, Color.White));
+        PlaceNewPiece('e', 1, new King(Board, Color.White, this));
         PlaceNewPiece('f', 1, new Bishop(Board, Color.White));
         PlaceNewPiece('g', 1, new Knight(Board, Color.White));
         PlaceNewPiece('h', 1, new Rook(Board, Color.White));
@@ -252,7 +289,7 @@ public class ChessMatch
         PlaceNewPiece('b', 8, new Knight(Board, Color.Black));
         PlaceNewPiece('c', 8, new Bishop(Board, Color.Black));
         PlaceNewPiece('d', 8, new Queen(Board, Color.Black));
-        PlaceNewPiece('e', 8, new King(Board, Color.Black));
+        PlaceNewPiece('e', 8, new King(Board, Color.Black, this));
         PlaceNewPiece('f', 8, new Bishop(Board, Color.Black));
         PlaceNewPiece('g', 8, new Knight(Board, Color.Black));
         PlaceNewPiece('h', 8, new Rook(Board, Color.Black));
