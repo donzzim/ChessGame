@@ -139,6 +139,23 @@ public class ChessMatch
             throw new ChessboardException("You cannot put yourself in check");
         }
 
+        Piece p = Board.Piece(destination);
+
+        // Promotion
+        if (p is Pawn)
+        {
+            if ((p.Color == Color.White && destination.Row == 0) ||
+                (p.Color == Color.Black && destination.Row == 7))
+            {
+                p = Board.RemovePiece(destination);
+                pieces.Remove(p);
+                Piece queen = new Queen(Board, p.Color);
+                Board.PlacePiece(queen, destination);
+                pieces.Add(queen);
+            }
+        }
+
+
         if (IsInCheck(Opponent(CurrentPlayer)))
         {
             Check = true;
@@ -157,8 +174,6 @@ public class ChessMatch
             Turn++;
             ChangePlayer();
         }
-
-        Piece p = Board.Piece(destination);
 
         // En Passant
         if (p is Pawn && (destination.Row == origin.Row - 2 || destination.Row == origin.Row + 2 ))
