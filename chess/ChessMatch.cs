@@ -70,8 +70,16 @@ public class ChessMatch
             Check = false;
         }
 
-        Turn++;
-        ChangePlayer();
+        if (TestCheckMate(Opponent(CurrentPlayer)))
+        {
+            Finished = true;
+        }
+        else
+        {
+            Turn++;
+            ChangePlayer();
+        }
+
     }
 
     public void ValidateOriginPosition(Position pos)
@@ -177,6 +185,39 @@ public class ChessMatch
             }
         }
         return false;
+    }
+
+    public bool TestCheckMate(Color color)
+    {
+        if (!IsInCheck(color))
+        {
+            return false;
+        }
+
+        foreach (Piece p in GetPiecesInGame(color))
+        {
+            bool[,] mat = p.PossibleMoves();
+            for (int i = 0; i < Board.Rows; i++)
+            {
+                for (int j = 0; j < Board.Columns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        Position origin = p.Position;
+                        Position destination = new Position(i, j);
+                        Piece capturedPiece = MakeMove(p.Position, destination);
+                        bool CheckMate = IsInCheck(color);
+                        UndoMove(origin, destination, capturedPiece);
+                        if (!CheckMate)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     public void PlaceNewPiece(char column, int row, Piece piece)

@@ -36,6 +36,8 @@ try
             Console.ReadLine();
         }
     }
+    Console.Clear();
+    Screen.PrintMatch(match);
 }
 catch (ChessboardException e)
 {

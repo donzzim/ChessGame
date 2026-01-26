@@ -12,10 +12,18 @@ public class Screen
         PrintCapturedPieces(match);
         Console.WriteLine();
         Console.WriteLine("Turn: " + match.Turn);
-        Console.WriteLine("Player: " + match.CurrentPlayer);
-        if (match.Check)
+        if (!match.Finished)
         {
-            Console.WriteLine("Check!");
+            Console.WriteLine("Player: " + match.CurrentPlayer);
+            if (match.Check)
+            {
+                Console.WriteLine("Check!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Check Mate!");
+            Console.WriteLine("Winner: " + match.CurrentPlayer);
         }
     }
 
