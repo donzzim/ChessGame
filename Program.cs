@@ -11,10 +11,8 @@ try
         try
         {
             Console.Clear();
-            Screen.PrintScreen(match.Board);
-            Console.WriteLine();
-            Console.WriteLine("Turn: " + match.Turn);
-            Console.WriteLine("Player: " + match.CurrentPlayer);
+            Screen.PrintMatch(match);
+            Screen.PrintCapturedPieces(match);
 
             Console.WriteLine();
             Console.Write("Origin: ");
