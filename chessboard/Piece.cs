@@ -19,6 +19,10 @@ public abstract class Piece
     {
         NumberOfMoves++;
     }
+    public void RemoveMove()
+    {
+        NumberOfMoves--;
+    }
 
     public bool HasAnyPossibleMove()
     {

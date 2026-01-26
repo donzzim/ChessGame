@@ -9,8 +9,14 @@ public class Screen
     public static void PrintMatch(ChessMatch match){
         PrintScreen(match.Board);
         Console.WriteLine();
+        PrintCapturedPieces(match);
+        Console.WriteLine();
         Console.WriteLine("Turn: " + match.Turn);
         Console.WriteLine("Player: " + match.CurrentPlayer);
+        if (match.Check)
+        {
+            Console.WriteLine("Check!");
+        }
     }
 
     public static void PrintCapturedPieces(ChessMatch match)
@@ -83,31 +89,30 @@ public class Screen
     {
         if (piece == null)
         {
-            Console.WriteLine("- ");
+            Console.Write("- ");
         }
         else
         {
             if (piece.Color == Color.White)
             {
-                Console.WriteLine(piece);
+                Console.Write(piece + " ");
             }
             else
             {
                 ConsoleColor aux = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(piece);
+                Console.Write(piece + " ");
                 Console.ForegroundColor = aux;
             }
-
-            Console.WriteLine(" ");
         }
     }
+
 
     public static ChessPosition ReadChessPosition()
     {
         string s = Console.ReadLine();
         char column = s[0];
-        int row = int.Parse(s[1] + " ");
+        int row = int.Parse(s[1].ToString());
         return new ChessPosition(column, row);
     }
 }

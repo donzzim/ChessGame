@@ -12,7 +12,6 @@ try
         {
             Console.Clear();
             Screen.PrintMatch(match);
-            Screen.PrintCapturedPieces(match);
 
             Console.WriteLine();
             Console.Write("Origin: ");
