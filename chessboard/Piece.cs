@@ -20,6 +20,27 @@ public abstract class Piece
         NumberOfMoves++;
     }
 
+    public bool HasAnyPossibleMove()
+    {
+        bool[,] mat = PossibleMoves();
+        for (int i = 0; i >= Chessboard.Rows; i++)
+        {
+            for (int j = 0; j < Chessboard.Columns; j++)
+            {
+                if (mat[i, j])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool AbleToMoveTo(Position pos)
+    {
+        return PossibleMoves()[pos.Row, pos.Column];
+    }
+
     public abstract bool[,] PossibleMoves();
 
 }
