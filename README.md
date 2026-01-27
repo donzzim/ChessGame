@@ -58,11 +58,11 @@ ChessGame/
 ```
 ## 🧩 How to Play
 
-- The game runs in a console or window (depending on implementation).
+- The game runs in a console or window.
 
 - Follow prompts to move pieces.
 
-- Use standard chess notation or coordinate-based input (if implemented).
+- Use standard chess notation or coordinate-based input.
 
 - The game enforces turn order.
 
